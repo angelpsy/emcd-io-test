@@ -1,5 +1,5 @@
-import type { IUsersFilter } from '@/types/users-filter';
-import {ref} from 'vue';
+import type { IUsersFilter } from "@/types/users-filter";
+import { ref } from "vue";
 
 const DEFAULT_FILTER: IUsersFilter = {
   page: 1,
@@ -13,13 +13,6 @@ export const useFilter = (defaultFilter: IUsersFilter = DEFAULT_FILTER) => {
     filter.value = {
       ...filter.value,
       page,
-    };
-  };
-
-  const updatePerPage = (perPage: number) => {
-    filter.value = {
-      ...filter.value,
-      perPage,
     };
   };
 

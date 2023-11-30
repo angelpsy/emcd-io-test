@@ -1,5 +1,5 @@
-import {UsersRepositoryRandomUserMe} from "@/repositories/users/randomuser.me";
-import {getHttpClientInstance} from "@/instances/httpClient/axios";
+import { UsersRepositoryRandomUserMe } from "@/repositories/users/randomuser.me";
+import { getHttpClientInstance } from "@/instances/httpClient/axios";
 
 let instance: UsersRepositoryRandomUserMe | null = null;
 

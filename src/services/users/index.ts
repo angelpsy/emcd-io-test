@@ -9,7 +9,8 @@ export class UsersService {
     private userMapper?: typeof userMapperRadomUserMeToClient,
   ) {}
   async getUsersByFilter(filter: IUsersFilter) {
-    const {data: users, ...rest} = await this.usersRepository.getUsersByFilter(filter);
+    const { data: users, ...rest } =
+      await this.usersRepository.getUsersByFilter(filter);
     return {
       data: this.userMapper ? users.map(this.userMapper) : users,
       ...rest,

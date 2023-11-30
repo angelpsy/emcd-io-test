@@ -1,5 +1,5 @@
 import axios from "axios";
-import type { HttpClient } from '@/types/http-client';
+import type { HttpClient } from "@/types/http-client";
 
 let instance: HttpClient | null = null;
 

@@ -1,5 +1,5 @@
 <template>
-  <div ref="root">
+  <div ref="rootEl">
     <slot />
   </div>
 </template>
@@ -29,11 +29,11 @@ const props = withDefaults(
 );
 const emit = defineEmits(["on-change", "on-visible", "not-supported"]);
 const observer = ref<IntersectionObserver | null>(null);
-const root = ref<HTMLElement | null>(null);
+const rootEl = ref<HTMLElement | null>(null);
 
 const unobserve = () => {
   if (observer.value) {
-    root.value && observer.value.unobserve(root.value);
+    rootEl.value && observer.value.unobserve(rootEl.value);
   }
 };
 
@@ -52,7 +52,7 @@ onMounted(() => {
       });
     }, options);
 
-    root.value && observer.value.observe(root.value);
+    rootEl.value && observer.value.observe(rootEl.value);
   } else {
     emit("not-supported");
   }

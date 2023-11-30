@@ -1,4 +1,4 @@
-import type { HttpClient } from '@/types/http-client';
+import type { HttpClient } from "@/types/http-client";
 import { type IUsersFilter } from "@/types/users-filter.d";
 
 // it is enough for now, but in the future we need to add base interface
