@@ -1,12 +1,9 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-const count = ref(0);
-const increment = () => count.value++;
+import Users from '@/components/users/index.vue';
 </script>
 
 <template>
   <main>
-    <p>Count is: {{ count }}</p>
-    <button @click="increment">Increment</button>
+    <Users />
   </main>
 </template>
