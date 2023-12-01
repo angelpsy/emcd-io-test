@@ -1,13 +1,16 @@
 <script setup lang="ts">
-import { onMounted } from "vue";
+import { onMounted, inject } from "vue";
 import UsersList from "@/components/users/list/index.vue";
 import UsersListItem from "@/components/users/list-item/index.vue";
 import Observer from "@/components/shared/observer/index.vue";
 import { useUsers } from "@/composables/users";
 import { useFilter } from "@/composables/filter";
+import type { UsersService } from '@/services/users';
+
+const userServiceInstance = inject<UsersService>('usersService');
 
 const { users, isLoading, isLastPage, fetchUsersByFilter, loadMoreUsers } =
-  useUsers();
+  useUsers(userServiceInstance);
 const { filter, increasePage } = useFilter();
 
 const fetchUsers = () => {

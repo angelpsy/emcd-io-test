@@ -1,13 +1,12 @@
 import { computed, ref } from "vue";
-import { getUsersServiceClientInstance } from "@/instances/services/users/client";
 import type { IUsersFilter } from "@/types/users-filter";
 import type { IUser } from "@/types/user";
+import type { UsersService } from '@/services/users';
 
 const DEFAULT_USERS = [] as IUser[];
 const MAX_USERS = 100000;
 
-export const useUsers = () => {
-  const usersServiceInstance = getUsersServiceClientInstance();
+export const useUsers = (usersServiceInstance?: UsersService) => {
   const users = ref<IUser[]>(DEFAULT_USERS);
   const isLoading = ref(false);
 
@@ -16,6 +15,7 @@ export const useUsers = () => {
   });
 
   const fetchUsersByFilter = async (filter: IUsersFilter) => {
+    if (!usersServiceInstance) return;
     isLoading.value = true;
     const { data } = await usersServiceInstance.getUsersByFilter(filter);
     users.value = data;
@@ -23,7 +23,7 @@ export const useUsers = () => {
   };
 
   const loadMoreUsers = async (filter: IUsersFilter) => {
-    if (isLastPage.value) return;
+    if (isLastPage.value || !usersServiceInstance) return;
     isLoading.value = true;
     const { data } = await usersServiceInstance.getUsersByFilter(filter);
     users.value = [...users.value, ...data];
